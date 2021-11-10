@@ -96,6 +96,13 @@ export class Client extends EventEmitter {
                   this.emit('friendRequest', friendRequest);
                 }
               }
+              if (data.Type == 'FriendshipDestroyed') {
+                const args = data.EventArgs;
+                const partner = await utils.getUserFromId(args.UserId2);
+                if (partner.id != this.user.id) {
+                  this.emit('friendDestroy', partner);
+                }
+              }
             }
           }
         }
