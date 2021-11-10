@@ -1,13 +1,13 @@
 {
   "name": "boblox.ts",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Interacts with the Roblox API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "lint": "eslint src/ --ext .ts",
     "prepare": "npm run build",
-    "prepublishOnly": "npm run lint && npm test",
+    "prepublishOnly": "npm run lint",
     "preversion": "npm run lint",
     "version": "git add -A src",
     "postversion": "git push && git push --tags",
