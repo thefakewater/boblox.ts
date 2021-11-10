@@ -38,6 +38,7 @@ export class Client extends EventEmitter {
   /**
    * Login to Roblox
    * @param {string} cookie .ROBLOSECURITY
+   * @return {string} cookie
    */
   async login(cookie: string) {
     if (!cookie) throw new Error('MISSING COOKIE');
@@ -100,6 +101,7 @@ export class Client extends EventEmitter {
         }
       });
     });
+    return cookie;
   }
 
   /**
