@@ -1,7 +1,7 @@
 {
   "name": "boblox.ts",
   "version": "0.2.0",
-  "description": "Interacts with the Roblox API",
+  "description": "Interact in real-time with the Roblox API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
