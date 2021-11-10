@@ -49,7 +49,7 @@ client.on('ready', () => {
 });
 
 client.on('messageCreate', async (msg) => {
-	await message.reply('You sent this: ' + msg.content);
+	await msg.reply('You sent this: ' + msg.content);
 });
 
 client.on('typingStart', async (typing) => {
