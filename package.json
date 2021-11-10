@@ -22,6 +22,10 @@
     "api",
     "interact"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thefakewater/boblox.ts.git"
+  },
   "author": "TheFakeWater",
   "license": "MIT",
   "dependencies": {
