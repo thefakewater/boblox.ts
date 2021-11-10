@@ -15,8 +15,8 @@ import {Conversation} from '../structures/Conversation';
 import {FriendRequest} from '../structures/FriendRequest';
 import {Message} from '../structures/Message';
 import {MinimalUser} from '../structures/MinimalUser';
-import {Self} from '../structures/Self';
 import {Typing} from '../structures/Typing';
+import {User} from '../structures/User';
 import {utils} from '../util/Util';
 
 
@@ -26,14 +26,14 @@ import {utils} from '../util/Util';
  */
 export class Client extends EventEmitter {
   private cookie: string;
-  user: Self;
+  user: User;
 
   /**
    * Create a client
    */
   constructor() {
     super();
-    this.user = new Self();
+    this.user = new User();
   }
   /**
    * Login to Roblox
@@ -158,6 +158,13 @@ export class Client extends EventEmitter {
     if (message instanceof Message) {
       message.conversation.send(message.content);
     }
+  }
+
+  /**
+   * Decline all friend requests
+   */
+  async declineAll() {
+    await global.axios.post('https://friends.roblox.com/v1/user/friend-requests/decline-all', {});
   }
 }
 
