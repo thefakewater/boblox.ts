@@ -103,6 +103,15 @@ export class Client extends EventEmitter {
                   this.emit('friendDestroy', partner);
                 }
               }
+              if (data.Type == 'FriendshipCreated') {
+                const args = data.EventArgs;
+                const partner = await utils.getUserFromId(args.UserId1);
+                if (partner.id == this.user.id) {
+                  return this.emit('newFriend',
+                      await utils.getUserFromId(args.UserId2));
+                }
+                this.emit('newFriend', partner);
+              }
             }
           }
         }
