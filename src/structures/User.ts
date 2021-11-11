@@ -38,15 +38,20 @@ export class User extends MinimalUser {
         'x-csrf-token': utils.token,
       },
     };
-    const res = await global.axios.post(`https://friends.roblox.com/v1/users/${this.id}/request-friendship`, {}, config);
-    if (!res.isCaptchaRequired) throw new Error('Something went wrong');
+    let res;
+    try {
+      res = await global.axios.post(`https://friends.roblox.com/v1/users/${this.id}/request-friendship`, {}, config);
+    } catch (err) {
+      return err;
+    }
+    if (!res.isCaptchaRequired) throw new Error('We are rate limited');
   }
 
   /**
    * Get all friends of the user
    * @return {Promise<User>} List of users
    */
-  async getFriends() : Promise<User[]> {
+  async getFriends() {
     const res = await global.axios.get(`https://friends.roblox.com/v1/users/${this.id}/friends`);
     const data = res.data.data;
     const friends: User[] = [];

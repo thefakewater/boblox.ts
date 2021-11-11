@@ -6,8 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- The `BaseClient` class
 - This changelog
- 
+- Error handling at `User.addFriend`
+
+### Changed
+- Client extends from `EventEmitter` to `BaseClient`
+
 ## [0.3.0] - 2021-11-10
 ### Added
 - The `newFriend` event

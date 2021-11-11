@@ -11,6 +11,7 @@
 <p align="center">
     <a href="https://github.com/google/eslint-config-google"><img src="https://img.shields.io/badge/code%20style-google-blue?style=flat-square" alt="JavaScript Style Guide"/></a>
     <a href="https://npmjs.org/boblox.ts"><img src="https://img.shields.io/npm/v/boblox.ts.svg?style=flat-square" alt="NPM package"/></a>
+    <a href="https://discord.gg/Jpg5HSax"><img src="https://img.shields.io/discord/892801942974263326?style=flat-square&label=discord" alt="Join our discord server!"></a>
 </p>
 
 ## Installation
