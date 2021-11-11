@@ -2,7 +2,6 @@ import axios from 'axios';
 
 global.axios = axios;
 
-import {EventEmitter} from 'events';
 import {WebSocket} from 'ws';
 import {
   connectionData,
@@ -11,6 +10,7 @@ import {
   START,
   USER_AGENT,
 } from '../consts';
+import {BaseClient} from '../structures/BaseClient';
 import {Conversation} from '../structures/Conversation';
 import {FriendRequest} from '../structures/FriendRequest';
 import {Message} from '../structures/Message';
@@ -22,9 +22,9 @@ import {utils} from '../util/Util';
 
 /**
  * Class representing a client
- * @extends EventEmitter
+ * @extends BaseClient
  */
-export class Client extends EventEmitter {
+export class Client extends BaseClient {
   private cookie: string;
   user: User;
 
