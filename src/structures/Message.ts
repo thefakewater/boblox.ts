@@ -1,5 +1,4 @@
-import {Typing} from './Typing';
-
+import { Typing } from "./Typing";
 
 /**
  * Class representing a message

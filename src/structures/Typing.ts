@@ -1,5 +1,5 @@
-import {Conversation} from './Conversation';
-import {User} from './User';
+import { Conversation } from "./Conversation";
+import { User } from "./User";
 
 /**
  * Class represing a typing state
