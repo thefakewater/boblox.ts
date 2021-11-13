@@ -34,7 +34,6 @@ axios.interceptors.request.use(
 
 global.axios = axios;
 
-import {WebSocket} from 'ws';
 import { WebSocket } from "ws";
 import {
   connectionData,
@@ -119,43 +118,46 @@ export class Client extends BaseClient {
               if (data.Type == "NewMessage") {
                 const conversation = new Conversation();
                 conversation.id = data.ConversationId;
-                const message = await utils.getLatestMessage(conversation);
-                this.emit('messageCreate', message);
+                const message = await utils.getLatestMessage(
+                  this,
+                  conversation
+                );
+                this.emit("messageCreate", message);
               }
-              if (data.Type == 'ParticipantTyping') {
+              if (data.Type == "ParticipantTyping") {
                 const conversation = new Conversation();
                 conversation.id = data.ConversationId;
                 const typing = new Typing();
                 typing.conversation = conversation;
-                typing.author = await utils.getUserFromId(data.UserId);
-                this.emit('typingStart', typing);
+                typing.author = await utils.getUserFromId(this, data.UserId);
+                this.emit("typingStart", typing);
               }
-            } else if (result.A[0] == 'FriendshipNotifications') {
+            } else if (result.A[0] == "FriendshipNotifications") {
               const data = JSON.parse(result.A[1]);
-              if (data.Type == 'FriendshipRequested') {
+              if (data.Type == "FriendshipRequested") {
                 const args = data.EventArgs;
                 if (this.user.id != args.UserId1) {
                   const requester = await utils.getUserFromId(args.UserId1);
                   const friendRequest = new FriendRequest();
                   friendRequest.author = requester;
-                  this.emit('friendRequest', friendRequest);
+                  this.emit("friendRequest", friendRequest);
                 }
               }
-              if (data.Type == 'FriendshipDestroyed') {
+              if (data.Type == "FriendshipDestroyed") {
                 const args = data.EventArgs;
                 const partner = await utils.getUserFromId(args.UserId2);
                 if (partner.id != this.user.id) {
-                  this.emit('friendDestroy', partner);
+                  this.emit("friendDestroy", partner);
                 }
               }
-              if (data.Type == 'FriendshipCreated') {
+              if (data.Type == "FriendshipCreated") {
                 const args = data.EventArgs;
                 const partner = await utils.getUserFromId(args.UserId1);
                 if (partner.id == this.user.id) {
                   return this.emit('newFriend',
                       await utils.getUserFromId(args.UserId2));
                 }
-                this.emit('newFriend', partner);
+                this.emit("newFriend", partner);
               }
             }
           }
