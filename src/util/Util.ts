@@ -39,20 +39,14 @@ export namespace utils {
     return new User(null, res.data);
   }
 
-    /**
-     * Set the cross-site request forgery token
-     */
-    export async function getCSRFToken() {
-      const config = {
-        headers: {
-          'x-csrf-token': utils.token,
-        },
-      };
-      try {
-        await global.axios.post(PRESENCE_ENDPOINT, LOCATION_HOME, config);
-      } catch (err) {
-        utils.token = err.response.headers['x-csrf-token'];
-      }
+  /**
+   * Set the cross-site request forgery token
+   */
+  export async function getCSRFToken() {
+    try {
+      await global.axios.post(PRESENCE_ENDPOINT, LOCATION_HOME);
+    } catch (err) {
+      utils.token = err.response.headers["x-csrf-token"];
     }
+  }
 }
-
