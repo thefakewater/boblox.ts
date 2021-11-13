@@ -54,8 +54,7 @@ import { utils } from "../util/Util";
  * @extends BaseClient
  */
 export class Client extends BaseClient {
-  private cookie: string;
-  user: User;
+  user: ClientUser;
 
   /**
    * Create a client
