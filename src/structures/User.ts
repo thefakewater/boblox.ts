@@ -1,5 +1,6 @@
 import { Avatar } from "./Avatar";
 import { Base } from "./Base";
+import { Friend } from "./Friend";
 
 /**
  * Represents a user on Roblox
@@ -46,9 +47,9 @@ export class User extends Base {
       `https://friends.roblox.com/v1/users/${this.id}/friends`
     );
     const data = res.data.data;
-    const friends: User[] = [];
+    const friends: Friend[] = [];
     for (let i = 0; i < data.length; i++) {
-      const friend = new User(this, data[i]);
+      const friend = new Friend(this, data[i]);
       friends.push(friend);
     }
     return friends;

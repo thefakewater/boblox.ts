@@ -1,16 +1,36 @@
+import { Avatar } from "./Avatar";
+import { Base } from "./Base";
 import { Conversation } from "./Conversation";
-import { User } from "./User";
 
 /**
  * Represents a friend of an user
  */
-export class Friend extends User {
+export class Friend extends Base {
+  /** The user's avatar
+   * @info Must be fetched with fetchAvatar
+   */
+  avatar: Avatar | null;
+  readonly createdAt: Date;
+  readonly id: number;
+  readonly name: string;
+  description: string | null;
+  isBanned: boolean;
+  displayName: string | null;
+
   /** Create a new friend
    * @param {Client} client
    * @param {any} data;
    */
   constructor(client, data) {
-    super(client, data);
+    super(client);
+    this.id = data.id;
+    this.name = data.name;
+    if ("displayName" in data) {
+      this.displayName = data.displayName;
+    }
+    if ("description" in data) {
+      this.description = data.description;
+    }
   }
 
   /**
