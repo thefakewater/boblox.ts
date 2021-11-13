@@ -1,37 +1,79 @@
 # Changelog
+
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.3.1] - 2021-11-11
+## [0.4.0-alpha] - 2021-11-13
+
 ### Added
+
+- The `Base` class
+- Better `User` properties resolver
+- Better Axios error handling
+- Automatic error when cookie becomes invalid
+- Avatar retriever things like `Avatar` and `User.getAvatar`
+- The `Friend` class
+- The `BaseClient` class
+- Automatic CSRF token retrieval
+- The `ClientUser` class
+
+### Changed
+
+- `declineAll` from `Client` to `ClientUser`
+- The extended class of `Client` from `EventEmitter` to `BaseClient`
+- The user property is now `ClientUser` instead of `User`
+- Migrate specific friend related functions from `User` to the new class `Friend`
+- The code style to a less strict one
+- The user agent
+- Now each util function has a first parameter that is of type `Client`
+
+### Removed
+
+- Manual CSRF token retrieval
+
+## [0.3.1] - 2021-11-11
+
+### Added
+
 - The `BaseClient` class
 - This changelog
 - Error handling at `User.addFriend`
 
 ### Changed
+
 - Client extends from `EventEmitter` to `BaseClient`
 
 ## [0.3.0] - 2021-11-10
+
 ### Added
+
 - The `newFriend` event
 - The `friendDestroy` event
 
 ## [0.2.1] - 2021-11-10
+
 ### Added
+
 - The Google eslint
+
 ### Changed
+
 - The whole codebase with eslint
 
 ### Removed
+
 - The deprecated `Self` class
 
-
 ## [0.2.0] - 2021-11-10
-### Deprecated 
+
+### Deprecated
+
 - The `Self` class
 
 ## [0.1.0] - 2021-11-06
+
 ### Added
+
 - The whole base code
