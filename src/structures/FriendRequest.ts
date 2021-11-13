@@ -11,13 +11,10 @@ export class FriendRequest {
    * Accept a friend request
    */
   async accept() {
-    await utils.getCSRFToken();
-    const config = {
-      headers: {
-        'x-csrf-token': utils.token,
-      },
-    };
-    await global.axios.post(`https://friends.roblox.com/v1/users/${this.author.id}/accept-friend-request`, {}, config);
+    await global.axios.post(
+      `https://friends.roblox.com/v1/users/${this.author.id}/accept-friend-request`,
+      {}
+    );
   }
   /**
    * Decline a friend request
