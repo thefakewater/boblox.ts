@@ -45,14 +45,8 @@ export class User extends Base {
     );
     const data = res.data.data;
     const friends: User[] = [];
-    for (let i=0; i < data.length; i++) {
-      const friend = new User();
-      friend.id = data[i].id;
-      friend.name = data[i].name;
-      friend.displayName = data[i].displayName;
-      friend.isBanned = data[i].isBanned;
-      friend.description = data[i].description;
-      friend.isFriend = true;
+    for (let i = 0; i < data.length; i++) {
+      const friend = new User(this, data[i]);
       friends.push(friend);
     }
     return friends;
