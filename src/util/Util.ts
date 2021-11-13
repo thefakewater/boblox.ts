@@ -1,7 +1,8 @@
-import {LOCATION_HOME, PRESENCE_ENDPOINT} from '../consts';
-import {Conversation} from '../structures/Conversation';
-import {Message} from '../structures/Message';
-import {User} from '../structures/User';
+/* eslint-disable @typescript-eslint/no-namespace */
+import { LOCATION_HOME, PRESENCE_ENDPOINT } from "../consts";
+import { Conversation } from "../structures/Conversation";
+import { Message } from "../structures/Message";
+import { User } from "../structures/User";
 
 export namespace utils {
     // eslint-disable-next-line prefer-const
