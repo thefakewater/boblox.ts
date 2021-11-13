@@ -53,6 +53,9 @@ export class User extends MinimalUser {
    */
   async getFriends() {
     const res = await global.axios.get(`https://friends.roblox.com/v1/users/${this.id}/friends`);
+    const res = await global.axios.get(
+      `https://friends.roblox.com/v1/users/${this.id}/friends`
+    );
     const data = res.data.data;
     const friends: User[] = [];
     for (let i=0; i < data.length; i++) {
