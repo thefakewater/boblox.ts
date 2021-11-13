@@ -19,7 +19,6 @@ export class User extends Base {
   isFriend: boolean;
 
   /**
-   * Remove from friend list if user is a friend
    * Create a new user
    * @param {Client} client
    * @param {string} data
@@ -31,10 +30,13 @@ export class User extends Base {
     if ("displayName" in data) {
       this.displayName = data.displayName;
     }
+    if ("description" in data) {
+      this.description = data.description;
     }
-    if (!res.isCaptchaRequired) throw new Error('We are rate limited');
+    if ("isFriend" in data) {
+      this.isFriend = data.isFriend;
+    }
   }
-
   /**
    * Get all friends of the user
    * @return {Promise<User>} List of users
