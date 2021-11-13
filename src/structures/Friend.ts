@@ -41,9 +41,6 @@ export class Friend extends User {
       "https://chat.roblox.com/v2/start-one-to-one-conversation",
       payload
     );
-    const convId = res.data.conversation.id;
-    const conversation = new Conversation();
-    conversation.id = convId;
-    conversation.send(message);
+    new Conversation(this.client, res.data.conversation).send(message);
   }
 }

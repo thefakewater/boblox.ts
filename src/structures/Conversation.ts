@@ -1,12 +1,21 @@
+import { utils } from "../util/Util";
+import { Base } from "./Base";
 import { User } from "./User";
 
 /**
  * Class representing a conversation
  */
-export class Conversation {
+export class Conversation extends Base {
   id: number;
-  members: User[];
+  /**
+   * Must be fetched with Conversation.fetchParticipants
+   */
+  participants: User[] | null;
 
+  constructor(client, data) {
+    super(client);
+    this.id = data.id;
+  }
   /**
    * Send a message to a conversation
    * @param {string} message The message to send

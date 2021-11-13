@@ -114,8 +114,9 @@ export class Client extends BaseClient {
             if (result.A[0] == "ChatNotifications") {
               const data = JSON.parse(result.A[1]);
               if (data.Type == "NewMessage") {
-                const conversation = new Conversation();
-                conversation.id = data.ConversationId;
+                const conversation = new Conversation(this, {
+                  id: data.ConversationId,
+                });
                 const message = await utils.getLatestMessage(
                   this,
                   conversation
@@ -123,8 +124,9 @@ export class Client extends BaseClient {
                 this.emit("messageCreate", message);
               }
               if (data.Type == "ParticipantTyping") {
-                const conversation = new Conversation();
-                conversation.id = data.ConversationId;
+                const conversation = new Conversation(this, {
+                  id: data.ConversationId,
+                });
                 const typing = new Typing();
                 typing.conversation = conversation;
                 typing.author = await utils.getUserFromId(this, data.UserId);
