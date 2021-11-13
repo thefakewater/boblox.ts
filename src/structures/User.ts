@@ -24,16 +24,6 @@ export class User extends Base {
    * @param {Client} client
    * @param {string} data
    */
-  async remove() {
-    if (this.isFriend) {
-      await utils.getCSRFToken();
-      const config = {
-        headers: {
-          'x-csrf-token': utils.token,
-        },
-      };
-      await global.axios.post(`https://friends.roblox.com/v1/users/${this.id}/unfriend`, {}, config);
-      return;
   constructor(client, data) {
     super(client);
     this.id = data.id;
@@ -41,23 +31,6 @@ export class User extends Base {
     if ("displayName" in data) {
       this.displayName = data.displayName;
     }
-    console.log('User is not a friend');
-  }
-  /**
-   * Add the user as friend
-   */
-  async addFriend() {
-    await utils.getCSRFToken();
-    const config = {
-      headers: {
-        'x-csrf-token': utils.token,
-      },
-    };
-    let res;
-    try {
-      res = await global.axios.post(`https://friends.roblox.com/v1/users/${this.id}/request-friendship`, {}, config);
-    } catch (err) {
-      return err;
     }
     if (!res.isCaptchaRequired) throw new Error('We are rate limited');
   }
@@ -67,7 +40,6 @@ export class User extends Base {
    * @return {Promise<User>} List of users
    */
   async getFriends() {
-    const res = await global.axios.get(`https://friends.roblox.com/v1/users/${this.id}/friends`);
     const res = await global.axios.get(
       `https://friends.roblox.com/v1/users/${this.id}/friends`
     );
