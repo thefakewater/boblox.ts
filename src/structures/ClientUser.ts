@@ -1,4 +1,5 @@
 import { Client } from "..";
+import { Avatar } from "./Avatar";
 import { Message } from "./Message";
 import { MinimalUser } from "./MinimalUser";
 import { User } from "./User";
@@ -97,5 +98,10 @@ export class ClientUser extends User {
     if (message instanceof Message) {
       message.conversation.send(message.content);
     }
+  }
+
+  async getAvatar(): Promise<Avatar> {
+    const res = await global.axios.get(`https://avatar.roblox.com/v1/avatar`);
+    return new Avatar(this.client, res.data);
   }
 }

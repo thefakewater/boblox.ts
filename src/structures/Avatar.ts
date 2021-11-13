@@ -1,3 +1,4 @@
+import { Client } from "..";
 import { Base } from "./Base";
 
 interface Scales {
@@ -43,4 +44,14 @@ export class Avatar extends Base {
   defaultShirtApplied: boolean;
   defaultPantsApplied: boolean;
   emotes: Emote[];
+
+  constructor(client: Client, data) {
+    super(client);
+    this.avatarType = data.playerAvatarType;
+    this.bodyColors = data.bodyColors;
+    this.assets = data.assets;
+    this.defaultShirtApplied = data.defaultShirtApplied;
+    this.defaultPantsApplied = data.defaultPantsApplied;
+    this.emotes = data.emotes;
+  }
 }
