@@ -170,4 +170,3 @@ export class Client extends BaseClient {
     return cookie;
   }
 }
-
