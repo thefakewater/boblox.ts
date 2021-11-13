@@ -1,4 +1,35 @@
 import axios from 'axios';
+axios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (err) => {
+    if (err.response) {
+      if (err.response.status == 401) {
+        throw new Error("Invalid cookie");
+      }
+    }
+    return Promise.reject(err);
+  }
+);
+
+axios.interceptors.request.use(
+  async (request) => {
+    if (request) {
+      if (
+        request.method == "post" &&
+        !request.url.startsWith("https://presence.roblox.com/")
+      ) {
+        await utils.getCSRFToken();
+        request.headers["x-csrf-token"] = utils.token;
+      }
+    }
+    return request;
+  },
+  (err) => {
+    throw new Error(err);
+  }
+);
 
 global.axios = axios;
 
