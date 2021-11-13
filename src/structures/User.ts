@@ -34,6 +34,12 @@ export class User extends Base {
       };
       await global.axios.post(`https://friends.roblox.com/v1/users/${this.id}/unfriend`, {}, config);
       return;
+  constructor(client, data) {
+    super(client);
+    this.id = data.id;
+    this.name = data.name;
+    if ("displayName" in data) {
+      this.displayName = data.displayName;
     }
     console.log('User is not a friend');
   }
