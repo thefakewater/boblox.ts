@@ -26,23 +26,18 @@ export namespace utils {
     return message;
   }
 
-    /**
-     * Get user object from user id
-     * @param {number} id The user id
-     * @return {Promise<User>} User
-     */
-    export async function getUserFromId(id:number) {
-      const user = new User();
-      let res = await global.axios.get('https://users.roblox.com/v1/users/' + id);
-      user.description = res.data.description;
-      user.isBanned = res.data.isBanned;
-      user.id = res.data.id;
-      user.name = res.data.name;
-      user.displayName = res.data.displayName;
-      res = await global.axios.get('https://friends.roblox.com/v1/users/' + id + '/friends/count');
-      user.friendsCount = res.data.count;
-      return user;
-    }
+  /**
+   * Get user object from user id
+   * @param {Client} client
+   * @param {number} id The user id
+   * @return {Promise<User>} User
+   */
+  export async function getUserFromId(client, id: number) {
+    const res = await global.axios.get(
+      "https://users.roblox.com/v1/users/" + id
+    );
+    return new User(null, res.data);
+  }
 
     /**
      * Set the cross-site request forgery token
