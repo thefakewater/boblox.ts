@@ -5,6 +5,6 @@ export const REALTIME_ENDPOINT = 'realtime.roblox.com/notifications';
 export const HTTPS_PROTOCOL = 'https://';
 export const WSS_PROTOCOL = 'wss://';
 export const connectionData = JSON.stringify([{'name': 'usernotificationhub'}]);
-export const USER_AGENT = 'roblox.ts';
+export const USER_AGENT = 'boblox.ts';
 export const ROBLOX_URL = 'https://www.roblox.com';
 export const START = '/start?transport=webSockets&clientProtocol=1.5';
