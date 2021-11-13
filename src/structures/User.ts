@@ -1,6 +1,3 @@
-import {utils} from '../util/Util';
-import {Conversation} from './Conversation';
-import {MinimalUser} from './MinimalUser';
 import { Avatar } from "./Avatar";
 import { Base } from "./Base";
 
