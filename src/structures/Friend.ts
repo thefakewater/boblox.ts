@@ -17,10 +17,14 @@ export class Friend extends User {
    * Remove from friend list if user is a friend
    */
   async remove() {
-    await global.axios.post(
-      `//friends.roblox.com/v1/users/${this.id}/unfriend`,
-      {}
-    );
+    if (this.isFriend) {
+      await global.axios.post(
+        `//friends.roblox.com/v1/users/${this.id}/unfriend`,
+        {}
+      );
+      return;
+    }
+    console.log("User is not a friend");
   }
 
   /**
