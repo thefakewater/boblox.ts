@@ -1,9 +1,8 @@
-import {utils} from '../util/Util';
-import {User} from './User';
+import { User } from "./User";
 
 /**
  * Class representing a friend request
-*/
+ */
 export class FriendRequest {
   author: User;
 
