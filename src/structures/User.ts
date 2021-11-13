@@ -72,21 +72,6 @@ export class User extends MinimalUser {
    * Send a message to the user
    * @param {string} message
    */
-  async send(message: string) {
-    await utils.getCSRFToken();
-    const config = {
-      headers: {
-        'x-csrf-token': utils.token,
-      },
-    };
-    const payload = {
-      participantUserId: this.id,
-    };
-    const res = await global.axios.post('https://chat.roblox.com/v2/start-one-to-one-conversation', payload, config);
-    const convId = res.data.conversation.id;
-    const conversation = new Conversation();
-    conversation.id = convId;
-    conversation.send(message);
   async addFriend() {
     try {
       await global.axios.post(
