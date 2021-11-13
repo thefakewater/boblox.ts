@@ -87,5 +87,14 @@ export class User extends MinimalUser {
     const conversation = new Conversation();
     conversation.id = convId;
     conversation.send(message);
+  async addFriend() {
+    try {
+      await global.axios.post(
+        `https://friends.roblox.com/v1/users/${this.id}/request-friendship`,
+        {}
+      );
+    } catch (err) {
+      return err;
+    }
   }
 }
