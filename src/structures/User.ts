@@ -69,8 +69,6 @@ export class User extends MinimalUser {
   }
 
   /**
-   * Send a message to the user
-   * @param {string} message
    * Add the user as friend
    */
   async addFriend() {
