@@ -2,17 +2,27 @@ import { Avatar } from "./Avatar";
 import { Base } from "./Base";
 
 /**
- * Class representing an user
- * @extends MinimalUser
+ * Represents a user on Roblox
+ * @extends Base
  */
-export class User extends MinimalUser {
+export class User extends Base {
+  /** The user's avatar
+   * @info Must be fetched with fetchAvatar
+   */
+  avatar: Avatar | null;
+  readonly createdAt: Date;
+  readonly id: number;
+  readonly name: string;
+  description: string | null;
   isBanned: boolean;
-  description: string;
-  friendsCount: number;
-  isFriend: boolean = false;
+  displayName: string | null;
+  isFriend: boolean;
 
   /**
    * Remove from friend list if user is a friend
+   * Create a new user
+   * @param {Client} client
+   * @param {string} data
    */
   async remove() {
     if (this.isFriend) {
