@@ -61,7 +61,6 @@ export class Client extends BaseClient {
    */
   constructor() {
     super();
-    this.user = new User();
   }
   /**
    * Login to Roblox
@@ -136,7 +135,10 @@ export class Client extends BaseClient {
               if (data.Type == "FriendshipRequested") {
                 const args = data.EventArgs;
                 if (this.user.id != args.UserId1) {
-                  const requester = await utils.getUserFromId(args.UserId1);
+                  const requester = await utils.getUserFromId(
+                    this,
+                    args.UserId1
+                  );
                   const friendRequest = new FriendRequest();
                   friendRequest.author = requester;
                   this.emit("friendRequest", friendRequest);
@@ -144,17 +146,19 @@ export class Client extends BaseClient {
               }
               if (data.Type == "FriendshipDestroyed") {
                 const args = data.EventArgs;
-                const partner = await utils.getUserFromId(args.UserId2);
+                const partner = await utils.getUserFromId(this, args.UserId2);
                 if (partner.id != this.user.id) {
                   this.emit("friendDestroy", partner);
                 }
               }
               if (data.Type == "FriendshipCreated") {
                 const args = data.EventArgs;
-                const partner = await utils.getUserFromId(args.UserId1);
+                const partner = await utils.getUserFromId(this, args.UserId1);
                 if (partner.id == this.user.id) {
-                  return this.emit('newFriend',
-                      await utils.getUserFromId(args.UserId2));
+                  return this.emit(
+                    "newFriend",
+                    await utils.getUserFromId(this, args.UserId2)
+                  );
                 }
                 this.emit("newFriend", partner);
               }
