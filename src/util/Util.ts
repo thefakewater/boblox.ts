@@ -5,23 +5,26 @@ import { Message } from "../structures/Message";
 import { User } from "../structures/User";
 
 export namespace utils {
-    // eslint-disable-next-line prefer-const
-    export let token = 'unknown';
-    /**
-     * Get the latest message from a conversation
-     * @param {Conversation} conv The conversation object
-     * @return {Promise<Message>} The latest message from conversation
-     */
-    export async function getLatestMessage(conv: Conversation) {
-      const res = await global.axios.get(`https://chat.roblox.com/v2/get-messages?conversationId=${conv.id}&pageSize=1`);
-      const msg_ = res.data[0];
-      const message = new Message();
-      const author = await getUserFromId(msg_.senderTargetId);
-      message.author = author;
-      message.content = msg_.content;
-      message.conversation = conv;
-      return message;
-    }
+  // eslint-disable-next-line prefer-const
+  export let token = "unknown";
+  /**
+   * Get the latest message from a conversation
+   * @param {Client} client
+   * @param {Conversation} conv The conversation object
+   * @return {Promise<Message>} The latest message from conversation
+   */
+  export async function getLatestMessage(client, conv: Conversation) {
+    const res = await global.axios.get(
+      `https://chat.roblox.com/v2/get-messages?conversationId=${conv.id}&pageSize=1`
+    );
+    const msg_ = res.data[0];
+    const message = new Message();
+    const author = await getUserFromId(client, msg_.senderTargetId);
+    message.author = author;
+    message.content = msg_.content;
+    message.conversation = conv;
+    return message;
+  }
 
     /**
      * Get user object from user id
