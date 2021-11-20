@@ -50,24 +50,26 @@ import { ClientUser } from "../structures/ClientUser";
 import { utils } from "../util/Util";
 
 /**
- * Class representing a client
- * @extends BaseClient
+ * Class representing the local Roblox client.
  */
 export class Client extends BaseClient {
   user: ClientUser;
 
   /**
-   * Create a client
+   * Creates a client.
+   * @public
    */
   constructor() {
     super();
   }
   /**
-   * Login to Roblox
-   * @param {string} cookie .ROBLOSECURITY
-   * @return {string} cookie
+   * Logins the client to Roblox.
+   * @param cookie - a `.ROBLOSECURITY` cookie
+   * @see the documentation to get your cookie
+   * @returns the cookie parameter if this was successful
+   * @public
    */
-  async login(cookie: string) {
+  async login(cookie: string): Promise<string> {
     if (!cookie) throw new Error("MISSING COOKIE");
     cookie = ".ROBLOSECURITY=" + cookie;
     axios.defaults.headers.common["cookie"] = cookie;

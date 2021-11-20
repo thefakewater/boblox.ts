@@ -5,21 +5,23 @@ import { MinimalUser } from "./MinimalUser";
 import { User } from "./User";
 
 /**
- * Represents the logged in Roblox client user
+ * Represents the logged in Roblox client user.
  */
 export class ClientUser extends User {
   /**
-   * Create a new client
-   * @param {Client} client
-   * @param {any} data
+   * Creates a new client.
+   * @param client - the client that instancied this class
+   * @param data - the json response from API call
+   * @internal
    */
   constructor(client: Client, data) {
     super(client, data);
   }
 
   /**
-   * Set the description of the logged in user's client
-   * @param {string} description
+   * Sets the description of the logged in user's client.
+   * @param description - the description you want to change to
+   * @public
    */
   async setDescription(description: string) {
     const payload = {
@@ -36,7 +38,8 @@ export class ClientUser extends User {
   }
 
   /**
-   * Decline all friend requests
+   * Declines all friend requests.
+   * @public
    */
   async declineAll() {
     await global.axios.post(
@@ -46,10 +49,12 @@ export class ClientUser extends User {
   }
 
   /**
-   * Search users with a keyword
-   * @param {string} keyword
-   * @param {number} limit The number of results
-   * @return {Promise<MinimalUser>} A list of minimal users
+   * Searches users with a keyword.
+   * @param keyword
+   * @param limit - Default is 10 results
+   * @remarks Do not pass a second parameter.
+   * @return a list of minimal users
+   * @beta
    */
   async search(keyword: string, limit = 10) {
     let res;
@@ -75,9 +80,11 @@ export class ClientUser extends User {
   }
 
   /**
-   * Send a message to a specific conversation with an id
-   * @param {Message | string} message
-   * @param {number | null} conversationId
+   * Sends a message to a specific conversation with an id.
+   * @param message - the message you want to send a `string` or a `Message`
+   * @param conversationId - the conversation id
+   * @public
+   * @remarks This function is only useful if you have a specific conversation id.
    */
   async send(message: string | Message, conversationId: number | null = null) {
     if (typeof message == "string" && conversationId) {
@@ -100,6 +107,11 @@ export class ClientUser extends User {
     }
   }
 
+  /**
+   * Gets the avatar of the logged in user.
+   * @returns the avatar of the logged in user
+   * @public
+   */
   async getAvatar(): Promise<Avatar> {
     const res = await global.axios.get(`https://avatar.roblox.com/v1/avatar`);
     return new Avatar(this.client, res.data);

@@ -1,15 +1,16 @@
 import { Client } from "..";
 
 /**
- * Base data model
+ * Base data model.
  */
 export abstract class Base {
   readonly client: Client;
   /**
-   * Create a new base
-   * @param {Client} client
+   * Creates a new base.
+   * @param client - the client that instancied this class
+   * @internal
    */
-  constructor(client) {
+  constructor(client: Client) {
     this.client = client;
   }
 }

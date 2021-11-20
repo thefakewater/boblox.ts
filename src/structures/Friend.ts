@@ -3,11 +3,11 @@ import { Base } from "./Base";
 import { Conversation } from "./Conversation";
 
 /**
- * Represents a friend of an user
+ * Represents a friend of an user.
  */
 export class Friend extends Base {
-  /** The user's avatar
-   * @info Must be fetched with fetchAvatar
+  /** The user's avatar.
+   * @remarks Must be fetched with fetchAvatar.
    */
   avatar: Avatar | null;
   readonly createdAt: Date;
@@ -17,9 +17,10 @@ export class Friend extends Base {
   isBanned: boolean;
   displayName: string | null;
 
-  /** Create a new friend
-   * @param {Client} client
-   * @param {any} data;
+  /** Creates a friend with the json response from API call.
+   * @param client - the client that instancied this class
+   * @param data - the json response from API call
+   * @internal
    */
   constructor(client, data) {
     super(client);
@@ -34,7 +35,8 @@ export class Friend extends Base {
   }
 
   /**
-   * Remove from friend list if user is a friend
+   * Removes a friend from friend list.
+   * @public
    */
   async remove() {
     try {
@@ -50,8 +52,9 @@ export class Friend extends Base {
   }
 
   /**
-   * Send a message to the user
-   * @param {string} message
+   * Sends a message to the user
+   * @param message - the message to send
+   * @public
    */
   async send(message: string) {
     const payload = {

@@ -3,12 +3,11 @@ import { Base } from "./Base";
 import { Friend } from "./Friend";
 
 /**
- * Represents a user on Roblox
- * @extends Base
+ * Represents an user on Roblox.
  */
 export class User extends Base {
   /** The user's avatar
-   * @info Must be fetched with fetchAvatar
+   * @remarks Must be fetched with User.fetchAvatar.
    */
   avatar: Avatar | null;
   readonly createdAt: Date;
@@ -20,9 +19,10 @@ export class User extends Base {
   isFriend: boolean;
 
   /**
-   * Create a new user
-   * @param {Client} client
-   * @param {string} data
+   * Creates a new user with the json response from API call.
+   * @param client - the client that instancied this class
+   * @param data - the json response from API call
+   * @internal
    */
   constructor(client, data) {
     super(client);
@@ -39,8 +39,9 @@ export class User extends Base {
     }
   }
   /**
-   * Get all friends of the user
-   * @return {Promise<User>} List of users
+   * Gets all friends of the user.
+   * @returns List of users
+   * @public
    */
   async getFriends() {
     const res = await global.axios.get(
@@ -56,7 +57,8 @@ export class User extends Base {
   }
 
   /**
-   * Add the user as friend
+   * Adds the user as friend.
+   * @public
    */
   async addFriend() {
     try {
