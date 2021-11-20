@@ -1,5 +1,5 @@
 /**
- * Class representing a minimal user
+ * Class representing a minimal user.
  */
 export class MinimalUser {
   name: string;

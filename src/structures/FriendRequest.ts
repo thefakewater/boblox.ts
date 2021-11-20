@@ -1,13 +1,14 @@
 import { User } from "./User";
 
 /**
- * Class representing a friend request
+ * Class representing a friend request.
  */
 export class FriendRequest {
   author: User;
 
   /**
-   * Accept a friend request
+   * Accepts a friend request.
+   * @public
    */
   async accept() {
     await global.axios.post(
@@ -16,7 +17,8 @@ export class FriendRequest {
     );
   }
   /**
-   * Decline a friend request
+   * Declines a friend request.
+   * @public
    */
   async decline() {
     await global.axios.post(

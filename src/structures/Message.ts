@@ -1,15 +1,15 @@
 import { Typing } from "./Typing";
 
 /**
- * Class representing a message
- * @extends Typing
+ * Class representing a message.
  */
 export class Message extends Typing {
   content: string;
 
   /**
-   * Reply to a message
-   * @param {string} message
+   * Replies to a message.
+   * @param message - the text you want to reply with
+   * @public
    */
   async reply(message: string) {
     this.conversation.send(message);

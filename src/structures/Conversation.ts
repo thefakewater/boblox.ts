@@ -2,22 +2,31 @@ import { Base } from "./Base";
 import { User } from "./User";
 
 /**
- * Class representing a conversation
+ * Class representing a conversation.
  */
 export class Conversation extends Base {
   id: number;
   /**
-   * Must be fetched with Conversation.fetchParticipants
+   * The participants of a conversation.
+   * @remarks Must be fetched with Conversation.fetchParticipants.
+   * @alpha
    */
   participants: User[] | null;
 
+  /**
+   * Creates a conversation object with the json response from API call.
+   * @param client - the client that instancied this class
+   * @param data - the json response from API call
+   * @internal
+   */
   constructor(client, data) {
     super(client);
     this.id = data.id;
   }
   /**
-   * Send a message to a conversation
-   * @param {string} message The message to send
+   * Sends a message to the conversation.
+   * @param message - the message to send
+   * @public
    */
   async send(message: string) {
     const payload = {
