@@ -1,6 +1,5 @@
 import { Client } from "..";
 import { Avatar } from "./Avatar";
-import { Group } from "./Group";
 import { Message } from "./Message";
 import { MinimalUser } from "./MinimalUser";
 import { User } from "./User";
@@ -104,12 +103,5 @@ export class ClientUser extends User {
   async getAvatar(): Promise<Avatar> {
     const res = await global.axios.get(`https://avatar.roblox.com/v1/avatar`);
     return new Avatar(this.client, res.data);
-  }
-
-  async getGroup(id: number): Promise<Group> {
-    const res = await global.axios.get(
-      "https://groups.roblox.com/v1/groups/" + id
-    );
-    return new Group(this.client, res.data);
   }
 }

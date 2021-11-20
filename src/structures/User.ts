@@ -26,8 +26,8 @@ export class User extends Base {
    */
   constructor(client, data) {
     super(client);
-    this.id = data.id || data.userId;
-    this.name = data.name || data.username;
+    this.id = data.id;
+    this.name = data.name;
     if ("displayName" in data) {
       this.displayName = data.displayName;
     }
