@@ -1,8 +1,9 @@
 import { Base } from "./Base";
 
 export class GroupShout extends Base {
-  body: unknown;
-  poster: unknown;
+  body: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  poster: any;
   readonly created: Date;
   readonly updated: Date;
   constructor(client, data) {
