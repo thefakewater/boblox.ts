@@ -1,6 +1,7 @@
 import { Avatar } from "./Avatar";
 import { Base } from "./Base";
 import { Friend } from "./Friend";
+import { Presence } from "./Presence";
 
 /**
  * Represents an user on Roblox.
@@ -69,5 +70,17 @@ export class User extends Base {
     } catch (err) {
       return err;
     }
+  }
+  /**
+   * Gets the presence of the user.
+   * @public
+   * @returns Promise<Presence>
+   */
+  async getPresence(): Promise<Presence> {
+    const data = await global.axios.post(
+      "https://presence.roblox.com/v1/presence/users",
+      { userIds: [this.id] }
+    );
+    return new Presence(this.client, data.data.userPresences[0]);
   }
 }
