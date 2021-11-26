@@ -10,3 +10,6 @@ export * from "./structures/Message";
 export * from "./structures/MinimalUser";
 export * from "./structures/Typing";
 export * from "./structures/User";
+export * from "./structures/Group";
+export * from "./structures/GroupShout";
+export * from "./structures/Presence";
