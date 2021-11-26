@@ -1,2 +1,6 @@
 dist/
 node_modules/
+app.ts
+src/
+package.json
+yarn.lock
