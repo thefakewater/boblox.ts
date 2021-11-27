@@ -24,8 +24,8 @@ export class Friend extends Base {
    */
   constructor(client, data) {
     super(client);
-    this.id = data.id;
-    this.name = data.name;
+    this.id = data.id || data.userId;
+    this.name = data.name || data.username;
     if ("displayName" in data) {
       this.displayName = data.displayName;
     }
