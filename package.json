@@ -1,6 +1,6 @@
 {
   "name": "boblox.ts",
-  "version": "0.7.0-alpha",
+  "version": "0.7.1-alpha",
   "description": "Interact in real-time with the Roblox API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -27,7 +27,7 @@
     "url": "git+https://github.com/thefakewater/boblox.ts.git"
   },
   "author": "TheFakeWater",
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "dependencies": {
     "@types/ws": "^8.2.0",
     "axios": "^0.24.0",
