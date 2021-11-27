@@ -3,60 +3,57 @@
     <br>
 </h1>
 
-<h4 align="center">Interact in real-time with the Roblox API.</h4>
+
 <h4 align="center">boblox.ts is still in alpha
 <br>
 <br>
 <p align="center">
     <a href="https://npmjs.org/boblox.ts"><img src="https://img.shields.io/npm/v/boblox.ts.svg?style=flat-square" alt="NPM package"/></a>
     <a href="https://discord.gg/Jpg5HSax"><img src="https://img.shields.io/discord/892801942974263326?style=flat-square&label=discord" alt="Join our discord server!"></a>
+    <a href="https://npmjs.org/boblox.ts"><img src="https://img.shields.io/npm/dt/boblox.ts?style=flat-square"></a>
 </p>
+
+<p align="center">
+  <a href="#about">About</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#quickstart">Quickstart</a> •
+  <a href="https://thefakewater.github.io/boblox.ts/">Documentation</a> •
+  <a href="#license">License</a>
+</p>
+
+## About
+boblox.ts is a object-oriented [NodeJS](https://nodejs.org/) module which allows you to interact with the [Roblox API](https://roblox.com).
+
+## Prerequisites
+- [Node.js](https://nodejs.org/en/download/current/)
 
 ## Installation
 
-To install, just run this command:
-
+Install boblox.ts
 ```bash
-$ npm install boblox.ts
+# Using npm:
+$ npm install noblox.js
+
+# Using yarn:
+$ yarn add noblox.js
 ```
 
-## Friend Example
+## Quickstart
+1) Get your `.ROBLOSECURITY` cookie.
+2. Write code
+    ```js
+    const boblox = require('boblox.ts');
+    const client = new boblox.Client();
+    
+    client.on('ready', async () => {
+      console.log('We logged in as ' + client.user.name);
+      await client.user.declineAll();
+    });
+    client.login('_|WARNING:-DO-NOT-SHARE-THIS.--Sharing-this-will-allow-someone-to-log-in-as-you-and-to-steal-your-ROBUX-and-items.|_');
+    ```
 
-```javascript
-const dotenv = require('dotenv');
-dotenv.config();
-const boblox = require('boblox.ts');
-const client = new boblox.Client();
+Note: use [dotenv](https://www.npmjs.com/package/dotenv) to hide your cookie from your source code.
 
-client.on('ready', () => {
-	console.log(`We have logged in as ${client.user.name}#${client.user.id}`);
-});
+## License
 
-client.on('friendRequest', async (fr) => {
-	await fr.accept();
-	console.log('We have accepted ' + fr.author.name + '\'s friend request!');
-)});
-client.login(process.env.COOKIE);
-```
-
-## Message Example
-
-```javascript
-const dotenv = require("dotenv");
-dotenv.config();
-const boblox = require("boblox.ts");
-const client = new boblox.Client();
-
-client.on("ready", () => {
-  console.log(`We have logged in as ${client.user.name}#${client.user.id}`);
-});
-
-client.on("messageCreate", async (msg) => {
-  await msg.reply("You sent this: " + msg.content);
-});
-
-client.on("typingStart", async (typing) => {
-  await typing.conversation.send(`What are you typing, ${typing.author.name}?`);
-});
-client.login(process.env.COOKIE);
-```
+[GPL-3.0 License](https://github.com/thefakewater/boblox.ts/blob/main/LICENSE)
