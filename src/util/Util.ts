@@ -36,7 +36,7 @@ export namespace utils {
     const res = await global.axios.get(
       "https://users.roblox.com/v1/users/" + id
     );
-    return new User(null, res.data);
+    return new User(client, res.data);
   }
 
   /**
