@@ -29,7 +29,7 @@ export class Presence extends Base {
    * @remarks This is only used for internal work this property will be null when fetchUser is called.
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: any;
+  private data: any;
   /**
    * Creates a new presence with the json response from API call.
    * @param client - the client that instancied this class
@@ -38,6 +38,7 @@ export class Presence extends Base {
    */
   constructor(client, data) {
     super(client);
+    this.data = data;
     this.userPresenceType = data.userPresenceType;
     this.lastLocation = data.lastLocation;
     this.placeId = data.placeId;
