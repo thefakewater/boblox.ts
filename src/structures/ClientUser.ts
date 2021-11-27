@@ -1,4 +1,4 @@
-import { Client } from "..";
+import { Client, Friend } from "..";
 import { Avatar } from "./Avatar";
 import { Group } from "./Group";
 import { Message } from "./Message";
@@ -123,5 +123,26 @@ export class ClientUser extends User {
       "https://groups.roblox.com/v1/groups/" + id
     );
     return new Group(this.client, res.data);
+  }
+  /**
+   * Get the friend object
+   * @param client - the client that instancied this class
+   * @public
+   * @returns A friend object.
+   */
+  async getFriendFromId(id: number): Promise<Friend> {
+    const res = await global.axios.get(
+      "https://friends.roblox.com/v1/users/" + this.id + "/friends"
+    );
+    const data = res.data.data;
+    let friendData;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].id == id) {
+        friendData = data[i];
+        break;
+      }
+    }
+    if (friendData) return new Friend(this.client, friendData);
+    throw new Error("Could not find friend with id " + id);
   }
 }
