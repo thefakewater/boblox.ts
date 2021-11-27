@@ -1,6 +1,9 @@
 import { Client } from "..";
 import { Base } from "./Base";
 
+/**
+ * Scales for the {@link Avatar}.
+ */
 interface Scales {
   height: number;
   width: number;
@@ -10,6 +13,9 @@ interface Scales {
   bodyType: number;
 }
 
+/**
+ * Body colors for the {@link Avatar}.
+ */
 interface BodyColors {
   headColorId: number;
   torsoColorId: number;
@@ -19,6 +25,9 @@ interface BodyColors {
   leftLegColorId: number;
 }
 
+/**
+ * Asset for the {@link Avatar}.
+ */
 interface Asset {
   id: number;
   name: string;
@@ -27,6 +36,9 @@ interface Asset {
   meta: { order: number; puffiness: number; version: number };
 }
 
+/**
+ * Emote for the {@link Avatar}.
+ */
 interface Emote {
   assetId: number;
   assetName: string;
