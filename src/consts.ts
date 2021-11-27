@@ -9,3 +9,4 @@ export const connectionData = JSON.stringify([{ name: "usernotificationhub" }]);
 export const USER_AGENT = "boblox.ts";
 export const ROBLOX_URL = "https://www.roblox.com";
 export const START = "/start?transport=webSockets&clientProtocol=1.5";
+export const BADGE_ENDPOINT = "https://badges.roblox.com";

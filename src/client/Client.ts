@@ -36,6 +36,7 @@ global.axios = axios;
 
 import { WebSocket } from "ws";
 import {
+  BADGE_ENDPOINT,
   connectionData,
   REALTIME_ENDPOINT,
   ROBLOX_URL,
@@ -48,6 +49,7 @@ import { FriendRequest } from "../structures/FriendRequest";
 import { Typing } from "../structures/Typing";
 import { ClientUser } from "../structures/ClientUser";
 import { utils } from "../util/Util";
+import { Badge } from "..";
 
 /**
  * Class representing the local Roblox client.
@@ -172,5 +174,22 @@ export class Client extends BaseClient {
       });
     });
     return cookie;
+  }
+  /**
+   * Gets badge with specified id.
+   * @param id - the badge id
+   * @see {@link https://en.help.roblox.com/hc/en-us/articles/203313620}
+   * @public
+   * @returns The {@link Badge} if found.
+   */
+  async getBadge(id: number): Promise<Badge> {
+    try {
+      const res = await axios.get(BADGE_ENDPOINT + "/v1/badges/" + id);
+      return new Badge(this, res.data);
+    } catch (err) {
+      if (err.response.status == 404) {
+        throw new Error("Could not find badge with id " + id);
+      }
+    }
   }
 }
