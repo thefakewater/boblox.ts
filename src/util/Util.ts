@@ -33,10 +33,16 @@ export namespace utils {
    * @return {Promise<User>} User
    */
   export async function getUserFromId(client, id: number) {
-    const res = await global.axios.get(
-      "https://users.roblox.com/v1/users/" + id
-    );
-    return new User(client, res.data);
+    try {
+      const res = await global.axios.get(
+        "https://users.roblox.com/v1/users/" + id
+      );
+      return new User(client, res.data);
+    } catch (err) {
+      if (err.response.status == 404) {
+        throw new Error("Could not find the user with id " + id);
+      }
+    }
   }
 
   /**
