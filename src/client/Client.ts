@@ -159,11 +159,11 @@ export class Client extends BaseClient {
               }
               if (data.Type == "FriendshipCreated") {
                 const args = data.EventArgs;
-                const partner = await utils.getUserFromId(this, args.UserId1);
+                const partner = await this.user.getFriendFromId(args.UserId1);
                 if (partner.id == this.user.id) {
                   return this.emit(
                     "newFriend",
-                    await utils.getUserFromId(this, args.UserId2)
+                    await this.user.getFriendFromId(args.UserId2)
                   );
                 }
                 this.emit("newFriend", partner);
