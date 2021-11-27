@@ -4,7 +4,7 @@ import { Base } from "./Base";
 /**
  * Scales for the {@link Avatar}.
  */
-interface Scales {
+export interface Scales {
   height: number;
   width: number;
   head: number;
@@ -16,7 +16,7 @@ interface Scales {
 /**
  * Body colors for the {@link Avatar}.
  */
-interface BodyColors {
+export interface BodyColors {
   headColorId: number;
   torsoColorId: number;
   rightArmColorId: number;
@@ -28,7 +28,7 @@ interface BodyColors {
 /**
  * Asset for the {@link Avatar}.
  */
-interface Asset {
+export interface Asset {
   id: number;
   name: string;
   assetType: { id: number; name: string };
@@ -39,7 +39,7 @@ interface Asset {
 /**
  * Emote for the {@link Avatar}.
  */
-interface Emote {
+export interface Emote {
   assetId: number;
   assetName: string;
   position: number;
