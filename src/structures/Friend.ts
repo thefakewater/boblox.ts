@@ -1,3 +1,4 @@
+import { RequestTypes } from "..";
 import { Avatar } from "./Avatar";
 import { Base } from "./Base";
 import { Conversation } from "./Conversation";
@@ -40,10 +41,13 @@ export class Friend extends Base {
    */
   async remove() {
     try {
-      await global.axios.post(
-        `https://friends.roblox.com/v1/users/${this.id}/unfriend`,
-        {}
-      );
+      const request = async () => {
+        await global.axios.post(
+          `https://friends.roblox.com/v1/users/${this.id}/unfriend`,
+          {}
+        );
+      };
+      await this.client.handler.push(request, RequestTypes.FRIENDS);
     } catch (err) {
       if (err.response.status == 400) {
         throw new Error(err.response.data.errors[0].message);

@@ -14,3 +14,4 @@ export * from "./structures/Group";
 export * from "./structures/GroupShout";
 export * from "./structures/Presence";
 export * from "./structures/Badge";
+export * from "./client/RequestHandler";
