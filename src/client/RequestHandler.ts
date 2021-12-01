@@ -23,8 +23,9 @@ export class RequestHandler extends EventEmitter {
     });
     request = this.queue.shift();
     if (request) {
-      await request.call();
+      const res = await request.call();
       await new Promise((r) => setTimeout(r, MINUTE / type));
+      return res;
     }
   }
 }
