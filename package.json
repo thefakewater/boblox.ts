@@ -31,6 +31,7 @@
   "dependencies": {
     "@types/ws": "^8.2.0",
     "axios": "^0.24.0",
+    "opn-url": "^1.0.1",
     "ws": "^8.2.3"
   },
   "devDependencies": {
@@ -41,5 +42,8 @@
     "typed-emitter": "^1.4.0",
     "typedoc": "^0.22.9",
     "typescript": "^4.4.4"
+  },
+  "optionalDependencies": {
+    "windows-mutex": "^0.4.1"
   }
 }

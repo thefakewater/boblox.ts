@@ -1,4 +1,5 @@
 import axios from "axios";
+import { open } from "opn-url";
 
 axios.interceptors.response.use(
   (response) => {
@@ -191,5 +192,38 @@ export class Client extends BaseClient {
         throw new Error("Could not find badge with id " + id);
       }
     }
+  }
+
+  /**
+   * Joins game with a game id.
+   * @param id - the game id
+   * @remarks This method only works on Windows operating system.
+   * @experimental
+   */
+  async joinGame(id: number) {
+    const config = {
+      headers: {
+        "user-agent": "Roblox/WinInet",
+        referer: "https://www.roblox.com/develop",
+        "RBX-For-Gameauth": "true",
+      },
+    };
+    const res = await axios.post(
+      "https://auth.roblox.com/v1/authentication-ticket/",
+      {},
+      config
+    );
+    const authToken = res.headers["rbx-authentication-ticket"];
+    const launchTime = Math.round(Date.now());
+    const browserTrackerId = Math.random() * 100;
+    const url = `roblox-player:1+launchmode:play+gameinfo:${authToken}+launchtime:${launchTime}+placelauncherurl:https://assetgame.roblox.com/game/PlaceLauncher.ashx?request=RequestGame&browserTrackerId=${browserTrackerId}&placeId=${id}&isPlayTogetherGame=false+browsertrackerid:${browserTrackerId}+robloxLocale:en_us+gameLocale:en_us`;
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      const Mutex = require("windows-mutex").Mutex;
+      new Mutex("ROBLOX_singletonMutex");
+    } catch (err) {
+      throw new Error("You are not on Windows");
+    }
+    open(url);
   }
 }
