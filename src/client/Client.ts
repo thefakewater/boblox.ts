@@ -49,20 +49,21 @@ import { FriendRequest } from "../structures/FriendRequest";
 import { Typing } from "../structures/Typing";
 import { ClientUser } from "../structures/ClientUser";
 import { utils } from "../util/Util";
-import { Badge } from "..";
+import { Badge, RequestHandler } from "..";
 
 /**
  * Class representing the local Roblox client.
  */
 export class Client extends BaseClient {
   user: ClientUser;
-
+  readonly handler: RequestHandler;
   /**
    * Creates a client.
    * @public
    */
   constructor() {
     super();
+    this.handler = new RequestHandler();
   }
   /**
    * Logins the client to Roblox.

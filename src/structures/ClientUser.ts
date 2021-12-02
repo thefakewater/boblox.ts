@@ -1,4 +1,4 @@
-import { Client, Friend } from "..";
+import { Client, Friend, RequestTypes } from "..";
 import { Avatar } from "./Avatar";
 import { Group } from "./Group";
 import { Message } from "./Message";
@@ -43,10 +43,13 @@ export class ClientUser extends User {
    * @public
    */
   async declineAll() {
-    await global.axios.post(
-      "https://friends.roblox.com/v1/user/friend-requests/decline-all",
-      {}
-    );
+    const request = async () => {
+      await global.axios.post(
+        "https://friends.roblox.com/v1/user/friend-requests/decline-all",
+        {}
+      );
+    };
+    await this.client.handler.push(request, RequestTypes.FRIENDS);
   }
 
   /**
@@ -131,9 +134,12 @@ export class ClientUser extends User {
    * @returns A friend object.
    */
   async getFriendFromId(id: number): Promise<Friend> {
-    const res = await global.axios.get(
-      "https://friends.roblox.com/v1/users/" + this.id + "/friends"
-    );
+    const request = async () => {
+      return await global.axios.get(
+        "https://friends.roblox.com/v1/users/" + this.id + "/friends"
+      );
+    };
+    const res = await this.client.handler.push(request, RequestTypes.FRIENDS);
     const data = res.data.data;
     let friendData;
     for (let i = 0; i < data.length; i++) {

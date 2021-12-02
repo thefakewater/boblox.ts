@@ -1,3 +1,4 @@
+import { RequestTypes } from "..";
 import { Avatar } from "./Avatar";
 import { Base } from "./Base";
 import { Friend } from "./Friend";
@@ -45,9 +46,12 @@ export class User extends Base {
    * @public
    */
   async getFriends() {
-    const res = await global.axios.get(
-      `https://friends.roblox.com/v1/users/${this.id}/friends`
-    );
+    const request = async () => {
+      return await global.axios.get(
+        `https://friends.roblox.com/v1/users/${this.id}/friends`
+      );
+    };
+    const res = await this.client.handler.push(request, RequestTypes.FRIENDS);
     const data = res.data.data;
     const friends: Friend[] = [];
     for (let i = 0; i < data.length; i++) {
@@ -63,10 +67,13 @@ export class User extends Base {
    */
   async addFriend() {
     try {
-      await global.axios.post(
-        `https://friends.roblox.com/v1/users/${this.id}/request-friendship`,
-        {}
-      );
+      const request = async () => {
+        await global.axios.post(
+          `https://friends.roblox.com/v1/users/${this.id}/request-friendship`,
+          {}
+        );
+      };
+      await this.client.handler.push(request, RequestTypes.FRIENDS);
     } catch (err) {
       return err;
     }
