@@ -32,10 +32,10 @@ boblox.ts is a object-oriented [NodeJS](https://nodejs.org/) module which allows
 Install boblox.ts
 ```bash
 # Using npm:
-$ npm install noblox.js
+$ npm install boblox.ts
 
 # Using yarn:
-$ yarn add noblox.js
+$ yarn add boblox.ts
 ```
 
 ## Quickstart
