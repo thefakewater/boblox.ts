@@ -3,6 +3,7 @@ import { EventEmitter } from "events";
 export enum RequestTypes {
   GLOBAL = -1,
   FRIENDS = 20,
+  GROUPS = 10,
 }
 const MINUTE = 60000;
 

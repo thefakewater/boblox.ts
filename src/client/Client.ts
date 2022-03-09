@@ -19,7 +19,7 @@ axios.interceptors.request.use(
   async (request) => {
     if (request) {
       if (
-        request.method == "post" &&
+        (request.method == "post" || "patch") &&
         !request.url.startsWith("https://presence.roblox.com/")
       ) {
         await utils.getCSRFToken();
