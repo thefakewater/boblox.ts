@@ -1,3 +1,4 @@
+import { RequestTypes } from "..";
 import { Base } from "./Base";
 import { GroupShout } from "./GroupShout";
 import { User } from "./User";
@@ -33,5 +34,28 @@ export class Group extends Base {
     this.id = data.id;
     this.owner = new User(client, data.owner);
     this.shout = new GroupShout(client, data.shout);
+  }
+
+  /**
+   * Shouts to group
+   * @param message - the message to shout to group
+   */
+  async newShout(message: string) {
+    const payload = { message: message };
+    try {
+      const request = async () => {
+        return await global.axios.patch(
+          `https://groups.roblox.com/v1/groups/${this.id}/status`,
+          payload
+        );
+      };
+      await this.client.handler.push(request, RequestTypes.GROUPS);
+    } catch (err) {
+      if (err.response.status == 400) {
+        throw new Error(
+          "You are not authorized to set the status of this group"
+        );
+      }
+    }
   }
 }
